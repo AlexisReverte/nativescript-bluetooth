@@ -648,8 +648,8 @@ Bluetooth._encodeValue = function (val) {
   if (typeof val != 'string') {
 
     if (val instanceof Int8Array) {
-      var result = Array.create("byte", parts.length);
-      for (var i = 0; i < parts.length; i++) {
+      var result = Array.create("byte", val.length);
+      for (var i = 0; i < val.length; i++) {
         result[i] = val[i];
       }
 
