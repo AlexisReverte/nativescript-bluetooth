@@ -417,7 +417,13 @@ Bluetooth.startScanning = function (arg) {
           if (android.os.Build.VERSION.SDK_INT < 21 /* android.os.Build.VERSION_CODES.LOLLIPOP */ ) {
             adapter.stopLeScan(Bluetooth._scanCallback);
           } else {
-            adapter.getBluetoothLeScanner().stopScan(Bluetooth._scanCallback);
+            var scanner = adapter.getBluetoothLeScanner();
+
+            if (scanner) {
+              scanner.stopScan(Bluetooth._scanCallback);
+            } else {
+              return reject('Error with scanner');
+            }
           }
           resolve();
         }, arg.seconds * 1000);
