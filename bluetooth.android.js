@@ -725,7 +725,8 @@ Bluetooth.writeWithoutResponse = function (arg) {
         return;
       }
       var wrapper = Bluetooth._getWrapper(arg, reject);
-      if (wrapper === null) {
+      if (!wrapper) {
+        reject('error on writing response');
         // no need to reject, this has already been done
         return;
       }
